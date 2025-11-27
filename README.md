@@ -1,13 +1,26 @@
 Kimi API 🌙
 
+# Kimi API 🌙
 
+[![PyPI Version](https://img.shields.io/pypi/v/kimik2)](https://pypi.org/project/kimik2/)
+[![Supported Python Versions](https://img.shields.io/pypi/pyversions/kimik2)](https://pypi.org/project/kimik2/)
+[![CI Status](https://github.com/WhiteYUNZHIstar/kimik2/actions/workflows/ci.yml/badge.svg)](https://github.com/WhiteYUNZHIstar/kimik2/actions)
+[![License](https://img.shields.io/github/license/WhiteYUNZHIstar/kimik2)](LICENSE)
 
+**Kimi API** 是一个轻量级的全能工具库，支持同步/异步操作、工具调用、部分请求以及文件操作，旨在为开发者提供便捷的 API 使用体验。
 
+## 安装
 
+### 使用 `pip` 安装
 
+要快速安装 `kimik2` 库，只需运行以下命令：
 
+```bash
+pip install kimik2
 
-Kimi API 是一个轻量级的、功能强大的全能工具库，支持同步、异步操作、工具调用、部分请求和文件操作等功能，旨在提供简洁高效的 API 使用体验。
+Kimi API 是一个轻量级的、功能强大的全能工具库，支持同步、异步操作、工具调用、部分请求和文件操作等功能，旨在提供简洁高效的 API 使用
+
+体验。
 
 主要特点
 

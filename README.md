@@ -1,12 +1,22 @@
-Kimi API 🌙
 
 # Kimi API 🌙
 
-[![PyPI Version](https://img.shields.io/pypi/v/kimik2)](https://pypi.org/project/kimik2/)
-[![Supported Python Versions](https://img.shields.io/pypi/pyversions/kimik2)](https://pypi.org/project/kimik2/)
-[![CI Status](https://github.com/WhiteYUNZHIstar/kimik2/actions/workflows/ci.yml/badge.svg)](https://github.com/WhiteYUNZHIstar/kimik2/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/kimik2?style=flat-square)](https://pypi.org/project/kimik2/)
+[![Python](https://img.shields.io/pypi/pyversions/kimik2?style=flat-square)](https://pypi.org/project/kimik2/)
+[![CI](https://img.shields.io/github/workflow/status/WhiteYUNZHIstar/kimik2/ci?style=flat-square)](https://github.com/WhiteYUNZHIstar/kimik2/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/WhiteYUNZHIstar/kimik2?style=flat-square)](LICENSE)
 
-[![License](https://img.shields.io/github/license/WhiteYUNZHIstar/kimik2)](LICENSE)
+**Kimi API** 是一个轻量级的全能工具库，支持同步/异步操作、工具调用、部分请求以及文件操作，旨在为开发者提供便捷的 API 使用体验。
+
+## 安装
+
+### 使用 `pip` 安装
+
+要快速安装 `kimik2` 库，只需运行以下命令：
+
+```bash
+pip install kimik2
+
 
 **Kimi API** 是一个轻量级的全能工具库，支持同步/异步操作、工具调用、部分请求以及文件操作，旨在为开发者提供便捷的 API 使用体验。
 

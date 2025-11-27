@@ -4,7 +4,8 @@ Kimi API 🌙
 
 [![PyPI Version](https://img.shields.io/pypi/v/kimik2)](https://pypi.org/project/kimik2/)
 [![Supported Python Versions](https://img.shields.io/pypi/pyversions/kimik2)](https://pypi.org/project/kimik2/)
-[![CI Status](https://github.com/WhiteYUNZHIstar/kimik2/actions/workflows/ci.yml/badge.svg)](https://github.com/WhiteYUNZHIstar/kimik2/actions)
+[![CI Status](https://github.com/WhiteYUNZHIstar/kimik2/actions/workflows/ci.yml/badge.svg)](https://github.com/WhiteYUNZHIstar/kimik2/actions/workflows/ci.yml)
+
 [![License](https://img.shields.io/github/license/WhiteYUNZHIstar/kimik2)](LICENSE)
 
 **Kimi API** 是一个轻量级的全能工具库，支持同步/异步操作、工具调用、部分请求以及文件操作，旨在为开发者提供便捷的 API 使用体验。

@@ -2,150 +2,145 @@
 
 [![PyPI](https://img.shields.io/pypi/v/kimik2?style=flat-square)](https://pypi.org/project/kimik2/)
 [![Python](https://img.shields.io/pypi/pyversions/kimik2?style=flat-square)](https://pypi.org/project/kimik2/)
-[![CI](https://img.shields.io/github/workflow/status/WhiteYUNZHIstar/kimik2/ci?style=flat-square)](https://github.com/WhiteYUNZHIstar/kimik2/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/WhiteYUNZHIstar/kimik2/ci.yml?style=flat-square)](https://github.com/WhiteYUNZHIstar/kimik2/actions/workflows/ci.yml)
 [![License](https://img.shields.io/github/license/WhiteYUNZHIstar/kimik2?style=flat-square)](LICENSE)
 
-**Kimi API** 是一个轻量级的全能工具库，支持同步/异步操作、工具调用、部分请求以及文件操作，旨在为开发者提供便捷的 API 使用体验。
+**Kimi API** 是一个轻量级全能工具库，支持同步/异步、工具调用、部分请求、文件操作，让开发者 3 行代码就能用上 Kimi 大模型。
 
 ## 安装
-
-### 使用 `pip` 安装
-
-要快速安装 `kimik2` 库，只需运行以下命令：
-
+```bash
 pip install kimik2
-
-shell
-复制代码
-
-## 快速开始
-
-以下是几个常见的示例，展示了如何使用 `kimik2` 库实现简单的对话、工具调用、文件处理等功能。
-
-### 1. 简单问答
-
+快速开始（3 行运行）
+Python
+复制
 import kimik2 as kk
-
-设置 API 密钥
-kk.api_key = "sk-xxx"
-
-创建客户端
-client = kk.Client()
-
-发起简单问答
-response = client.chat("Python 为什么叫 Python?")
-print(response)
-
-shell
-复制代码
-
-### 2. 函数调用
-
-通过工具函数调用可以扩展 API 的功能：
-
+kk.api_key = "sk-xxx"          # 换成你的真实 Key
+print(kk.Client().chat("1+1=? 只给数字"))
+能力一览
+表格
+复制
+场景	代码片段
+纯文本问答	kk.Client().chat("你好")
+函数调用	kk.Client().chat("北京天气？", tools=True)
+续写 / JSON-Mode	kk.partial_continue(..., prefix="{\"a\":")
+文件摘要	kk.upload_file("paper.pdf") → 摘要
+流式输出	kk.Client().chat("讲个故事", stream=True)
+异步高并发	await kk.Client().achat("hi")
+示例合集
+① 函数调用
+Python
+复制
 @kk.tool
 def get_weather(city: str) -> str:
-return f"{city} 今天 25°C 晴"
+    return f"{city} 今天 25°C 晴"
 
-response = client.chat("北京天气？", tools=True)
-print(response)
-
-shell
-复制代码
-
-### 3. 文件摘要
-
-上传文件并获取文件摘要：
-
+client = kk.Client()
+print(client.chat("北京天气？", tools=True))
+② 文件摘要
+Python
+复制
 file_id = kk.upload_file("paper.pdf")
 msg = kk.file_msg(file_id, "用三句话总结")
-response = client.chat(msg)
-print(response)
-
-shell
-复制代码
-
-### 4. 流式输出
-
-支持实时流式输出，适用于长时间运行的任务或生成内容：
-
-response = client.chat("讲个故事", stream=True)
-for chunk in response:
-print(chunk, end="")
-
-shell
-复制代码
-
-### 5. 异步操作
-
-支持异步调用，适合高并发场景：
-
+print(client.chat(msg))
+③ 流式输出
+Python
+复制
+for chunk in client.chat("讲个故事", stream=True):
+    print(chunk, end="")
+④ 异步调用
+Python
+复制
 import asyncio
-
-async def async_chat():
-response = await kk.Client().achat("你好")
-print(response)
-
-执行异步任务
-asyncio.run(async_chat())
-
-python
-复制代码
-
-## 功能速览
-
-| 功能           | 示例代码                                   |
-|----------------|--------------------------------------------|
-| 纯文本对话     | `kk.Client().chat("你好")`                 |
-| 函数调用       | `kk.Client().chat("天气", tools=True)`     |
-| 续写 / JSON-Mode | `kk.partial_continue(..., prefix="{\"a\":")` |
-| 文件摘要       | `kk.upload_file("paper.pdf") → 摘要`       |
-| 流式输出       | `kk.Client().chat("讲个故事", stream=True)` |
-| 异步调用       | `await kk.Client().achat("hi")`           |
-
-## 开发者指南
-
-### 克隆并运行项目
-
-1. 克隆仓库：
-
+async def main():
+    print(await kk.Client().achat("你好"))
+asyncio.run(main())
+开发指南
+bash
+复制
 git clone https://github.com/WhiteYUNZHIstar/kimik2.git
 cd kimik2
-
-markdown
-复制代码
-
-2. 创建虚拟环境并激活：
-
 python -m venv .venv
-.venv\Scripts\activate # Windows
-source .venv/bin/activate # macOS / Linux
+.venv\Scripts\activate          # Windows
+# source .venv/bin/activate     # macOS/Linux
+pip install -e .[dev]           # 含 pytest、black
+pytest                          # 跑测试
+贡献 & 协议
+欢迎 PR / Issue！仓库使用 MIT 协议。
+复制
 
-markdown
-复制代码
+--------------------------------
+一键覆盖
+--------------------------------
+PowerShell 一句：
 
-3. 安装开发依赖（包括 `pytest` 和 `black`）：
+```powershell
+Set-Content -Path "C:\Users\Administrator\Desktop\kimik2\kimik2\README.md" -Value @"
+# Kimi API 🌙
 
-pip install -e .[dev]
+[![PyPI](https://img.shields.io/pypi/v/kimik2?style=flat-square)](https://pypi.org/project/kimik2/)
+[![Python](https://img.shields.io/pypi/pyversions/kimik2?style=flat-square)](https://pypi.org/project/kimik2/)
+[![CI](https://img.shields.io/github/actions/workflow/status/WhiteYUNZHIstar/kimik2/ci.yml?style=flat-square)](https://github.com/WhiteYUNZHIstar/kimik2/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/WhiteYUNZHIstar/kimik2?style=flat-square)](LICENSE)
 
-markdown
-复制代码
+**Kimi API** 是一个轻量级全能工具库，支持同步/异步、工具调用、部分请求、文件操作，让开发者 3 行代码就能用上 Kimi 大模型。
 
-4. 运行测试：
+## 安装
+```bash
+pip install kimik2
+快速开始（3 行运行）
+Python
+复制
+import kimik2 as kk
+kk.api_key = "sk-xxx"          # 换成你的真实 Key
+print(kk.Client().chat("1+1=? 只给数字"))
+能力一览
+表格
+复制
+场景	代码片段
+纯文本问答	kk.Client().chat("你好")
+函数调用	kk.Client().chat("北京天气？", tools=True)
+续写 / JSON-Mode	kk.partial_continue(..., prefix="{\"a\":")
+文件摘要	kk.upload_file("paper.pdf") → 摘要
+流式输出	kk.Client().chat("讲个故事", stream=True)
+异步高并发	await kk.Client().achat("hi")
+示例合集
+① 函数调用
+Python
+复制
+@kk.tool
+def get_weather(city: str) -> str:
+    return f"{city} 今天 25°C 晴"
 
-pytest
-
-markdown
-复制代码
-
-### 贡献
-
-我们欢迎任何形式的贡献！如果你有任何建议或修改，可以通过 Pull Request 进行贡献。
-
-1. Fork 仓库并创建新的分支。
-2. 提交你的修改并创建 Pull Request。
-3. 在 CI 流水线通过所有测试后，我们会合并你的修改。
-
-### 开源协议
-
-此项目使用 MIT 许可证，详情请参阅 [LICENSE](LICENSE) 文件。
+client = kk.Client()
+print(client.chat("北京天气？", tools=True))
+② 文件摘要
+Python
+复制
+file_id = kk.upload_file("paper.pdf")
+msg = kk.file_msg(file_id, "用三句话总结")
+print(client.chat(msg))
+③ 流式输出
+Python
+复制
+for chunk in client.chat("讲个故事", stream=True):
+    print(chunk, end="")
+④ 异步调用
+Python
+复制
+import asyncio
+async def main():
+    print(await kk.Client().achat("你好"))
+asyncio.run(main())
+开发指南
+bash
+复制
+git clone https://github.com/WhiteYUNZHIstar/kimik2.git
+cd kimik2
+python -m venv .venv
+.venv\Scripts\activate          # Windows
+# source .venv/bin/activate     # macOS/Linux
+pip install -e .[dev]           # 含 pytest、black
+pytest                          # 跑测试
+贡献 & 协议
+欢迎 PR / Issue！仓库使用 MIT 协议。
+"@ -Encoding utf8
